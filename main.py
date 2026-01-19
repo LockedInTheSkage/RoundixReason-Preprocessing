@@ -9,7 +9,6 @@ from config import (
     DATASET_SAMPLE_LIMITS,
     GRPO_DATASETS,
     HF_DATASET_NAME,
-    HF_USERNAME,
     PROMPT_MAX_LENGTH,
     TOKENIZER_MODEL,
     TRAIN_RATIO,
@@ -90,20 +89,22 @@ def upload_to_hub(grpo_dataset, repo_name, username):
 def main():
     parser = argparse.ArgumentParser(description="Preprocess GRPO datasets and upload to HuggingFace Hub")
     parser.add_argument("--upload", action="store_true", help="Upload processed datasets to HuggingFace Hub")
-    parser.add_argument("--username", type=str, default=HF_USERNAME, help="HuggingFace username for upload")
     args = parser.parse_args()
 
     if args.upload:
         token = os.getenv("HF_TOKEN")
         if not token:
-            raise ValueError("HuggingFace token required for upload. Set HF_TOKEN env variable.")
+            raise ValueError("HF_TOKEN environment variable required for upload")
+        username = os.getenv("HF_USERNAME")
+        if not username:
+            raise ValueError("HF_USERNAME environment variable required for upload")
         login(token=token)
 
     tokenizer = get_tokenizer(TOKENIZER_MODEL)
     grpo_dataset = load_and_process_grpo_datasets(tokenizer)
 
     if args.upload:
-        upload_to_hub(grpo_dataset, HF_DATASET_NAME, args.username)
+        upload_to_hub(grpo_dataset, HF_DATASET_NAME, username)
 
 
 if __name__ == "__main__":

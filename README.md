@@ -13,6 +13,7 @@ To upload to HuggingFace Hub:
 
 ```bash
 export HF_TOKEN=your_token
+export HF_USERNAME=your_username
 uv run python main.py --upload
 ```
 

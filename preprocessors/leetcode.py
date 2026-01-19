@@ -1,12 +1,12 @@
 import signal
 
 
-class TimeoutError(Exception):
+class CodeExecutionTimeout(Exception):
     pass
 
 
 def timeout_handler(signum, frame):
-    raise TimeoutError("Test execution exceeded timeout")
+    raise CodeExecutionTimeout("Test execution exceeded timeout")
 
 
 def validate_code_solution(solution_code, test_code, entry_point, prompt_helpers, timeout_seconds=2):
@@ -31,7 +31,7 @@ def validate_code_solution(solution_code, test_code, entry_point, prompt_helpers
         signal.alarm(0)
         return True
 
-    except TimeoutError:
+    except CodeExecutionTimeout:
         signal.alarm(0)
         return False
 

@@ -20,5 +20,4 @@ VAL_RATIO = 0.0
 TOKENIZER_MODEL = "google/gemma-2-2b-it"
 PROMPT_MAX_LENGTH = 512
 
-HF_USERNAME = "LockedInTheSkage"
 HF_DATASET_NAME = "RoundixReason-tagged-reasoning"
