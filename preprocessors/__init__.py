@@ -1,8 +1,3 @@
-"""
-Dataset-specific preprocessors for GRPO training.
-All preprocessors return examples with 'domain' tags for domain-specific reward functions.
-"""
-
 from .metamath import preprocess_metamath
 from .scienceqa import preprocess_scienceqa, should_keep_scienceqa
 from .sciq import preprocess_sciq

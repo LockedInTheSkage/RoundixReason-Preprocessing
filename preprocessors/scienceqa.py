@@ -1,35 +1,11 @@
-"""
-ScienceQA preprocessor.
-"""
-
-from typing import Dict, Any
 from .utils import format_choices
 
 
-
-def should_keep_scienceqa(example: Dict[str, Any]) -> bool:
-    """
-    Check if ScienceQA example should be kept (text-only filter).
-    
-    Args:
-        example: Raw example from ScienceQA dataset
-        
-    Returns:
-        True if example should be kept (no image)
-    """
+def should_keep_scienceqa(example):
     return example.get('image') is None
 
 
-def preprocess_scienceqa(example: Dict[str, Any]) -> Dict[str, Any]:
-    """
-    Preprocess ScienceQA examples.
-
-    Args:
-        example: Raw example from ScienceQA dataset
-
-    Returns:
-        Processed example with prompt, question, answer (no split)
-    """
+def preprocess_scienceqa(example):
     question_text = example.get('question', '')
     choices = example.get('choices', [])
     answer_idx = example.get('answer', 0)
