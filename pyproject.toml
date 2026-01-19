@@ -1,0 +1,29 @@
+[project]
+name = "roundixreason-preprocessing"
+version = "0.1.0"
+description = "Dataset preprocessing pipeline for RoundixReason GRPO training - Multi-domain reasoning datasets"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+authors = [
+    { name = "LockedInTheSkage" }
+]
+dependencies = [
+    "datasets>=2.14.0",
+    "huggingface-hub>=0.16.0",
+    "transformers>=4.30.0",
+]
+
+[project.scripts]
+preprocess = "main:main"
+
+[project.urls]
+Homepage = "https://github.com/LockedInTheSkage/RoundixReason-Preprocessing"
+Repository = "https://github.com/LockedInTheSkage/RoundixReason-Preprocessing"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["preprocessors"]
